@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS APK - Admin Panel</title>
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>PS APK Admin</h2>
+            </div>
+            <nav class="admin-nav">
+                <a href="#dashboard" class="nav-item active" onclick="showSection('dashboard')">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="#apps" class="nav-item" onclick="showSection('apps')">
+                    <span>📱</span> Apps
+                </a>
+                <a href="#add-app" class="nav-item" onclick="showSection('add-app')">
+                    <span>➕</span> Add New App
+                </a>
+                <a href="#categories" class="nav-item" onclick="showSection('categories')">
+                    <span>📂</span> Categories
+                </a>
+                <a href="#reviews" class="nav-item" onclick="showSection('reviews')">
+                    <span>⭐</span> Reviews
+                </a>
+                <a href="#settings" class="nav-item" onclick="showSection('settings')">
+                    <span>⚙️</span> Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="admin-header">
+                <h1 id="page-title">Dashboard</h1>
+                <div class="user-info">
+                    <span>Admin User</span>
+                    <button class="btn-logout">Logout</button>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📱</div>
+                        <div class="stat-info">
+                            <h3 id="total-apps">0</h3>
+                            <p>Total Apps</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📥</div>
+                        <div class="stat-info">
+                            <h3 id="total-downloads">0</h3>
+                            <p>Total Downloads</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-info">
+                            <h3 id="avg-rating">0</h3>
+                            <p>Average Rating</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📂</div>
+                        <div class="stat-info">
+                            <h3 id="total-categories">0</h3>
+                            <p>Categories</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-charts">
+                    <div class="chart-card">
+                        <h3>Recent Activity</h3>
+                        <div id="recent-activity" class="activity-list">
+                            <!-- Activity items will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Top Downloads</h3>
+                        <div id="top-downloads">
+                            <!-- Top downloads will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Apps List Section -->
+            <section id="apps" class="content-section">
+                <div class="section-header">
+                    <input type="text" id="search-apps" placeholder="Search apps..." class="search-input">
+                    <select id="filter-category" class="filter-select">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Icon</th>
+                            <th>Name</th>
+                            <th>Developer</th>
+                            <th>Category</th>
+                            <th>Version</th>
+                            <th>Downloads</th>
+                            <th>Rating</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="apps-table-body">
+                        <!-- Apps will be loaded here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Add App Section -->
+            <section id="add-app" class="content-section">
+                <form id="add-app-form" class="app-form" enctype="multipart/form-data">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>App Name *</label>
+                            <input type="text" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Developer *</label>
+                            <input type="text" name="developer" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Package Name *</label>
+                            <input type="text" name="packageName" required placeholder="com.example.app">
+                        </div>
+                        <div class="form-group">
+                            <label>Category *</label>
+                            <select name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="games">Games</option>
+                                <option value="social">Social</option>
+                                <option value="tools">Tools</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="productivity">Productivity</option>
+                                <option value="education">Education</option>
+                                <option value="photography">Photography</option>
+                                <option value="music">Music</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Version *</label>
+                            <input type="text" name="version" required placeholder="1.0.0">
+                        </div>
+                        <div class="form-group">
+                            <label>Size</label>
+                            <input type="text" name="size" placeholder="25 MB">
+                        </div>
+                        <div class="form-group">
+                            <label>Min Android Version</label>
+                            <input type="text" name="minAndroidVersion" placeholder="5.0">
+                        </div>
+                        <div class="form-group">
+                            <label>Target Android Version</label>
+                            <input type="text" name="targetAndroidVersion" placeholder="13.0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Short Description *</label>
+                        <textarea name="description" rows="2" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Full Description *</label>
+                        <textarea name="fullDescription" rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What's New</label>
+                        <textarea name="whatsNew" rows="3" placeholder="Latest updates and features"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Permissions (comma-separated)</label>
+                        <input type="text" name="permissions" placeholder="Camera, Storage, Internet">
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" name="isFeatured">
+                            Featured App
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label>App Icon</label>
+                        <input type="file" name="icon" accept="image/*">
+                    </div>
+
+                    <div class="form-group">
+                        <label>APK File *</label>
+                        <input type="file" name="apk" accept=".apk" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Screenshots (Max 5)</label>
+                        <input type="file" name="screenshots" accept="image/*" multiple>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Add App</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Categories Section -->
+            <section id="categories" class="content-section">
+                <button class="btn btn-primary" onclick="showAddCategory()">Add Category</button>
+                <div id="categories-grid" class="categories-admin-grid">
+                    <!-- Categories will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Reviews Section -->
+            <section id="reviews" class="content-section">
+                <div id="reviews-list" class="reviews-list">
+                    <!-- Reviews will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="content-section">
+                <div class="settings-card">
+                    <h3>General Settings</h3>
+                    <div class="form-group">
+                        <label>Site Name</label>
+                        <input type="text" value="PS APK">
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Email</label>
+                        <input type="email" value="admin@psapk.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Items Per Page</label>
+                        <input type="number" value="20">
+                    </div>
+                    <button class="btn btn-primary">Save Settings</button>
+                </div>
+
+                <div class="settings-card">
+                    <h3>Database Management</h3>
+                    <button class="btn btn-secondary" onclick="seedDatabase()">Seed Sample Data</button>
+                    <button class="btn btn-danger">Clear All Data</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit App Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h2>Edit App</h2>
+            <form id="edit-app-form" class="app-form">
+                <input type="hidden" name="appId">
+                <!-- Form fields similar to add-app form -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>App Name *</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Developer *</label>
+                        <input type="text" name="developer" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select name="category" required>
+                            <option value="games">Games</option>
+                            <option value="social">Social</option>
+                            <option value="tools">Tools</option>
+                            <option value="entertainment">Entertainment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Version *</label>
+                        <input type="text" name="version" required>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Update App</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
