@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Uploaded files
+backend/uploads/*
+backend/downloads/*
+!backend/uploads/.gitkeep
+!backend/downloads/.gitkeep
+
+# Database
+database/
+*.db
+*.sqlite
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# Build
+dist/
+build/
+*.min.js
+*.min.css
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Package manager
+package-lock.json
+yarn.lock
